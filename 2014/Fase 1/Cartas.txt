@@ -10,3 +10,11 @@ Saída
 Seu programa deve produzir uma única linha, contendo um único caractere maiúsculo: "C" caso a sequência dada esteja ordenada crescentemente, "D" se estiver ordenada decrescentemente, ou "N" caso contrário.
 Restrições
 o valor de cada carta é um inteiro entre 1 e 13.
+
+
+testes:
+1 2 3 5 6 C
+
+5 7 10 9 11 N
+
+12 10 4 3 2 D
