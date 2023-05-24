@@ -1,3 +1,5 @@
+#teste 12345
+
 cartas = input().split(" ")
 
 cartas = list(map(int, cartas))
