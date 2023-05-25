@@ -1,4 +1,3 @@
-#teste 12345
 
 cartas = input().split(" ")
 
