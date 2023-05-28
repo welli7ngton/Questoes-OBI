@@ -1,3 +1,6 @@
+# link da questão:
+# https://olimpiada.ic.unicamp.br/pratique/ps/2014/f1/cartas/
+
 
 cartas = input().split(" ")
 
