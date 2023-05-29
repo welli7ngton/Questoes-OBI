@@ -12,15 +12,32 @@ Saída
 A saída consiste de uma linha, informando a duração do voo em minutos e quantas horas B está à frente de A, em termos de fusos horários. Os dois valores devem ser separados por um espaço em branco.
 '''
 
-
 # Entrada
-# 10:00 22:00 10:00 18:00
+# Pa    Cb                             Pb    Ca                diferença de fusos:
+# 10:00 22:00                          10:00 18:00                    02hrs       
+# 10:00 20:00 hora a 10hrs de voo      08:00 18:00 hora a      tempo de voo:
+# 12:00 22:00 hora b 10hrs de voo      10:00 20:00 hora b             10hrs
 
 # Saída
-# 600 2
+# 600 2 | 10hrs 2hrs
 
+# Entrada
+# Pa    Cb                             Pb    Ca                diferença de fusos:
+# 17:00 13:00                          17:00 23:00                    05hrs
+# 17:00 18:00 hora a                   17:00 18:00 hora a      tempo de voo:
+# 12:00 13:00 hora b                   22:00 23:00 hora b             10hrs
 
+# Saída
+# 60 -5 | 1hrs 2hrs
 
+# Entrada
+# Pa    Cb                             Pb    Ca                diferença de fusos:
+# 18:00 12:00                          18:00 14:00                    11hrs
+# 18:00 01:00 hora a                   07:00 14:00 hora a      tempo de voo:
+# 05:00 12:00 hora b                   18:00 01:00 hora b             7hrs
+
+# Saída
+# 420 11 | 7hrs 11hrs
 
 
 
@@ -33,29 +50,75 @@ p_B = p_A[2]
 c_A = p_A[3]
 p_A = p_A[0]
 
-tempo_voo = []
+horarios = []
 
-tempo_voo.append(int(c_B[:2]) - int(p_A[:2]))
-tempo_voo.append(int(c_A[:2]) - int(p_B[:2]))
+horarios.append(int(p_A[:2]))
+horarios.append(int(c_B[:2]))
+horarios.append(int(p_B[:2]))
+horarios.append(int(c_A[:2]))
 
-if tempo_voo[0] > tempo_voo[1]:
-    maior, menor = tempo_voo[0], tempo_voo[1]
-else:
-    maior, menor = tempo_voo[1], tempo_voo[0]
+xa = horarios[0] - horarios[1]
+xb = horarios[2] - horarios[3]
 
-dif = 0
-while True:
-    if maior != menor:
-        maior -= 1
-        menor +=1 
-        dif += 1
+delta = 0
+if xa < 0 and xb < 0:
+
+    if xa > xb:
+
+        while True:
+            if xa != xb:
+                xa -= 1
+                xb +=1 
+                delta += 1
+            else:
+                delta *= -1
+                break
     else:
-        break
+
+        while True:
+            if xa != xb:
+                xb -= 1
+                xa +=1 
+                delta += 1
+            else:   
+                break
+    chegada_a = horarios[1] + (delta * -1)
+    print((chegada_a - horarios[0])* 60, delta)
+else:
+    if xa > xb:
+
+        while True:
+            if xa != xb:
+                xa -= 1
+                xb +=1 
+                delta += 1
+            else:
+                delta = xa
+                break
+        
+    else:
+
+        while True:
+            if xa != xb:
+                xb -= 1
+                xa +=1 
+                delta += 1
+            else:
+                delta = xa  
+                break
+    
+    # definindo a hora de chegada de b no fuso horario de b
+    tempo_voo = horarios[3] - delta
+    fuso = tempo_voo - horarios[2]
+
+    print(tempo_voo * 60, fuso)
     
     
-print(dif)
+    
+    
 
 
+  
 
 
 
