@@ -20,18 +20,23 @@ def ocorrencia(l=[],exp=[],c=0, p=2,contador=0):
     p += 1    
     return ocorrencia(l,exp,c,p)
 
+def prim(n,l=[],div=2):
+    if n == 1:
+        return l
+    
+    if n %div == 0:
+        n = n/div
+        l.append(div)
+        
+    else:
+        div += 1
+
+    return prim(n,l,div)
+
 
 n = int(input())
 
-primos = []
-
-div = 2
-while n != 1:
-    if n %div == 0:
-        n = n/div
-        primos.append(div)
-    else:
-        div += 1
+primos = prim(n)
 
 exp = ocorrencia(primos)
 
