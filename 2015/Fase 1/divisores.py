@@ -33,12 +33,9 @@ def prim(n,l=[],div=2):
 
     return prim(n,l,div)
 
-
 n = int(input())
 
-primos = prim(n)
-
-exp = ocorrencia(primos)
+exp = ocorrencia(prim(n))
 
 r = 1
 for a in range(0,len(exp)):
