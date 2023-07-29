@@ -13,16 +13,16 @@ for a in range(0, len(cartas) - 1):
         r = False
         break
 
-if r == False:
+if r is False:
     for a in range(0, len(cartas) - 1):
         if cartas[a + 1] < cartas[a]:
             r = True
         else:
             r = False
-            print("N")  
-            break 
-    if r == True:
+            print("N")
+            break
+    if r is True:
         print("D")
 
 else:
-    print("C")    
+    print("C")
