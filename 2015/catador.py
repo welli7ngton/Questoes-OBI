@@ -1,10 +1,14 @@
 # https://olimpiada.ic.unicamp.br/pratique/ps/2015/f2/catador/
-
+# 1 2 0 8 4 2 9 8 1 3
+# 9 5 10 6
 def retorna_indices(n1, n2):
-    soma = n1 + n2
-    subt = n1 - n2
+    soma = n2 + n1
+    subt = n2 - n1
+    if soma < 0:
+        soma *= -1
     if subt < 0:
         subt *= -1
+
     return soma, subt
 
 
@@ -16,16 +20,22 @@ c = 0
 while c < int(m):
     balde = indices[c]
     qtd_conchas = conchas[indices[c]]
-    # print("balde", balde)
-    # print("qtd", qtd_conchas)
     indice1, indice2 = retorna_indices(balde, qtd_conchas)
-
     maior = max(indice1, indice2)
     menor = min(indice1, indice2)
-    print(menor, maior)
-    for i in range(menor, maior):
+    # print(menor, maior)
+    # try:
+    if maior > len(conchas):
+        maior = len(conchas) - 1
+    for i in range(menor, maior + 1):
         conchas[i] -= 1
-        # print(conchas[i])
-
     c += 1
-print("conchas final", sum(conchas))
+    # except IndexError:
+    #     maior = len(conchas)
+    #     continue
+
+conchas = [i for i in conchas if i > 0]
+
+print(sum(conchas))
+# 1 2 0 8 4 2 9 8 1 3
+# 9 5 10 6
